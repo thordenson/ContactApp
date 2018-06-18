@@ -25,7 +25,10 @@ app.get('/', (req, res) => {
 
 //Contacts List Page: show the user all contacts
 app.get('/contacts', (req, res) => {
-    res.send(contacts.users);
+    // res.send(contacts.users);
+    res.render('contacts-list', {
+        contactsArray: contacts.users
+    });
 });
 
 //Contacts Detail Page: show the user all info for one contact
