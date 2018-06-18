@@ -2,12 +2,16 @@
 const express = require('express');
 const app = express();
 const contacts = require('./contacts');
+//make a variable to refer to the built-in express static middleware
+const static = express.static;
 
 var expressHbs = require('express-handlebars');
 
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
+//Tell express to register the static middleware, and tell it what directory to look in for the static files
+app.use(static('public'));
 
 //Home Page!: Show the user a welcome message
 app.get('/', (req, res) => {
