@@ -9,9 +9,6 @@ app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 
-
-
-
 //Home Page!: Show the user a welcome message
 app.get('/', (req, res) => {
     //res.send('HAAAAAAAY');
@@ -40,7 +37,15 @@ app.get('/contacts/:id', (req, res)=> {
     });
     //TODO: check if `contact` is valid
     //(meaning, is it undefined or a real object)
-    res.send(contact);
+    //res.send(contact);
+    if (contact) {
+        res.render('contact-detail', {
+            contact: contact
+        });
+    } else {
+        //how to do a redirect??
+        res.redirect('/')
+    }
 });
 
 
